@@ -18,12 +18,44 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\karat\Desktop\Git Repos\Bingol-Sinema\BingolSinema
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/FilmEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRmlsbUVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/Giris.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cR2lyaXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/Raporlar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmFwb3JsYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/SeansEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2VhbnNFa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/Odeme.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPZGVtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/Rezervasyonlarim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXplcnZhc3lvbmxhcmltLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/Seanslar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFuc2xhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Shared/Error.cshtml]

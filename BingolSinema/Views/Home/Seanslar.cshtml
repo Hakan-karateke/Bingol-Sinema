@@ -1,0 +1,31 @@
+@model IEnumerable<BingolSinema.Models.Seans>
+
+@{
+    ViewBag.Title = "Seans Seçimi";
+}
+
+<h2>Seans Seçimi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Başlangıç Zamanı</th>
+            <th>Bitiş Zamanı</th>
+            <th>Salon</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var seans in Model)
+        {
+            <tr>
+                <td>@seans.BaslangicZamani</td>
+                <td>@seans.BitisZamani</td>
+                <td>@seans.Salon.SalonAdi</td>
+                <td>
+                    <a href="@Url.Action("Odeme", "Home", new { seansId = seans.SeansID })" class="btn btn-primary">Bilet Al</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,8 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<BingolSinema.Models.Film>
+
+@{
+    ViewBag.Title = "Film Seçimi";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Film Seçimi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Film Adı</th>
+            <th>Yönetmen</th>
+            <th>Yıl</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+            <tr>
+                <td>@film.FilmAdi</td>
+                <td>@film.Yönetmen</td>
+                <td>@film.Yil</td>
+                <td>
+                    <a href="@Url.Action("Seanslar", "Home", new { filmId = film.FilmID })" class="btn btn-primary">Seansları Görüntüle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

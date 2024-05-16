@@ -1,0 +1,29 @@
+@model BingolSinema.Models.Film
+
+@{
+    ViewBag.Title = "Film Ekle";
+}
+
+<h2>Film Ekle</h2>
+
+<form asp-action="FilmEkle" method="post">
+    <div class="form-group">
+        <label for="FilmAdi">Film Adı</label>
+        <input type="text" class="form-control" id="FilmAdi" name="FilmAdi" required />
+    </div>
+    <div class="form-group">
+        <label for="Yönetmen">Yönetmen</label>
+        <input type="text" class="form-control" id="Yönetmen" name="Yönetmen" required />
+    </div>
+    <div class="form-group">
+        <label for="Yil">Yıl</label>
+        <input type="number" class="form-control" id="Yil" name="Yil" required />
+    </div>
+    <div class="form-group">
+        <label for="TurID">Tür</label>
+        <select class="form-control" id="TurID" name="TurID">
+            <!-- Tür seçeneklerini buraya ekleyin -->
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Ekle</button>
+</form>

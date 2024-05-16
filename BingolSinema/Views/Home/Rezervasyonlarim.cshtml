@@ -1,0 +1,35 @@
+@model IEnumerable<BingolSinema.Models.Rezervasyon>
+
+@{
+    ViewBag.Title = "Rezervasyonlarım";
+}
+
+<h2>Rezervasyonlarım</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Film Adı</th>
+            <th>Seans Başlangıç</th>
+            <th>Seans Bitiş</th>
+            <th>Salon</th>
+            <th>Koltuk Numarası</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rezervasyon in Model)
+        {
+            <tr>
+                <td>@rezervasyon.Seans.Film.FilmAdi</td>
+                <td>@rezervasyon.Seans.BaslangicZamani</td>
+                <td>@rezervasyon.Seans.BitisZamani</td>
+                <td>@rezervasyon.Seans.Salon.SalonAdi</td>
+                <td>@rezervasyon.KoltukNumarasi</td>
+                <td>
+                    <a href="@Url.Action("IptalEt", "Home", new { rezervasyonId = rezervasyon.RezervasyonID })" class="btn btn-danger">İptal Et</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

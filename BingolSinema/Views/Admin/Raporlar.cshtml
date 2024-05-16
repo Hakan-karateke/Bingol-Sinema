@@ -1,0 +1,60 @@
+@{
+    ViewBag.Title = "İstatistiksel Raporlar";
+}
+
+<h2>İstatistiksel Raporlar</h2>
+
+<h3>Film Gösterim Sayıları</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Film</th>
+            <th>Gösterim Sayısı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.FilmGosterimSayilari)
+        {
+            <tr>
+                <td>@item.Film</td>
+                <td>@item.GosterimSayisi</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Salon Doluluk Oranları</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Salon</th>
+            <th>Doluluk Oranı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.SalonDolulukOranlari)
+        {
+            <tr>
+                <td>@item.Salon</td>
+                <td>@item.DolulukOrani</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>En Popüler Filmler</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Film</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in ViewBag.EnPopulerFilmler)
+        {
+            <tr>
+                <td>@film</td>
+            </tr>
+        }
+    </tbody>
+</table>

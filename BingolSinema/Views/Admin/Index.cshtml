@@ -1,0 +1,31 @@
+@model IEnumerable<BingolSinema.Models.Film>
+
+@{
+    ViewBag.Title = "Yönetici Paneli";
+}
+
+<h2>Yönetici Paneli</h2>
+
+<a href="@Url.Action("FilmEkle", "Admin")" class="btn btn-success">Film Ekle</a>
+<a href="@Url.Action("SeansEkle", "Admin")" class="btn btn-primary">Seans Ekle</a>
+
+<h3>Mevcut Filmler</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Film Adı</th>
+            <th>Yönetmen</th>
+            <th>Yıl</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+            <tr>
+                <td>@film.FilmAdi</td>
+                <td>@film.Yönetmen</td>
+                <td>@film.Yil</td>
+            </tr>
+        }
+    </tbody>
+</table>

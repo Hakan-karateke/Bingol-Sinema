@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BingolSinema")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4abbe07f79e54bb0597956d2221f89d7e08c135a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56b4e9486004f9bafa7974ddd89822a7793d4bf5")]
 [assembly: System.Reflection.AssemblyProductAttribute("BingolSinema")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BingolSinema")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
