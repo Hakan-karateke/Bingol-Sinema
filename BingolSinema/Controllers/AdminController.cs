@@ -7,6 +7,7 @@ namespace BingolSinema.Controllers
     public class AdminController : Controller
     {
         private readonly MyDbContext _context;
+        public Admin? GirisYapanAdmin = null;
 
         public AdminController(MyDbContext context)
         {
@@ -16,12 +17,20 @@ namespace BingolSinema.Controllers
         // 4. Film ekleyebilme ve seans düzenleyebilme için yönetici paneli
         public IActionResult Index()
         {
+            if(GirisYapanAdmin==null)
+            {
+                return RedirectToAction("Giris");
+            }
             var filmler = _context.Films.ToList();
             return View(filmler);
         }
 
         public IActionResult FilmEkle()
         {
+            if(GirisYapanAdmin==null)
+            {
+                return RedirectToAction("Giris");
+            }
             return View();
         }
 
@@ -39,6 +48,10 @@ namespace BingolSinema.Controllers
 
         public IActionResult SeansEkle()
         {
+            if(GirisYapanAdmin==null)
+            {
+                return RedirectToAction("Giris");
+            }
             var filmler = _context.Films.ToList();
             var salonlar = _context.Salons.ToList();
             ViewBag.Filmler = filmler;
@@ -96,6 +109,30 @@ namespace BingolSinema.Controllers
             ViewBag.EnPopulerFilmler = enPopulerFilmler;
 
             return View();
+        }
+
+        // New actions for SalonEkle
+        public IActionResult SalonEkle()
+        {
+            
+            if(GirisYapanAdmin==null)
+            {
+                return RedirectToAction("Giris");
+            }
+            
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SalonEkle(Salon salon)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Salons.Add(salon);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(salon);
         }
     }
 }

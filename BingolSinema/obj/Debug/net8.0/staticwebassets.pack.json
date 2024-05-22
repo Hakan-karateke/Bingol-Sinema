@@ -13,6 +13,30 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\BingolSinemaLogo.jpg",
+      "PackagePath": "staticwebassets\\images\\BingolSinemaLogo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\Layout_image.jpg",
+      "PackagePath": "staticwebassets\\images\\Layout_image.jpg"
+    },
+    {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\alex-litvin-MAYsdoYpGuk-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\alex-litvin-MAYsdoYpGuk-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\denise-jans-tV80374iytg-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\denise-jans-tV80374iytg-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\john-moeses-bauan-WG1HNF8PGHo-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\john-moeses-bauan-WG1HNF8PGHo-unsplash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\roman-skrypnyk-gjA24divsqw-unsplash.jpg",
+      "PackagePath": "staticwebassets\\images\\roman-skrypnyk-gjA24divsqw-unsplash.jpg"
+    },
+    {
       "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
