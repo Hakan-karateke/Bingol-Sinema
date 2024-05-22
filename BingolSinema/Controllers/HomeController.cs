@@ -8,14 +8,40 @@ public class HomeController : Controller
 {
         private readonly MyDbContext _context;
 
+        public Kullanici? GirisYapanKullanici= null;
+
         public HomeController(MyDbContext context)
         {
             _context = context;
         }
 
-        // 1. Kullanıcıların film seçimini yapabilecekleri ve seansları görebilecekleri ekran
-        public IActionResult Index()
+        // 5. Yönetici girişi için kimlik doğrulama mekanizması
+        public IActionResult Giris()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Giris(string KullaniciAdi, string Sifre)
+        {
+            var kullanici = _context.Kullanicis.FirstOrDefault(a => a.KullaniciAdi == KullaniciAdi && a.Sifre == Sifre);
+            if (kullanici != null)
+            {
+                // Kimlik doğrulama başarılı
+                // Admin oturumunu aç (örneğin, bir session oluştur)
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Geçersiz kullanıcı adı veya şifre");
+            return View();
+        }
+
+    // 1. Kullanıcıların film seçimini yapabilecekleri ve seansları görebilecekleri ekran
+    public IActionResult Index()
+        {
+            if(GirisYapanKullanici==null)
+            {
+                RedirectToAction("Giris");
+            }
             var filmler = _context.Films.ToList();
             return View(filmler);
         }
