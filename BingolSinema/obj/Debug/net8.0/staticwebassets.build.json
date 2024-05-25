@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "A5m1nM1BMUVRmlcHn+q57uTFjWpuDfKNVWHm0zLVeYU=",
+  "Hash": "wJNIBGoJjwrMCDLzgTCPDGNwyP3586aR3IUyVj671xE=",
   "Source": "BingolSinema",
   "BasePath": "_content/BingolSinema",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\AdminGiris.jpg",
+      "SourceId": "BingolSinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\",
+      "BasePath": "_content/BingolSinema",
+      "RelativePath": "images/AdminGiris.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\AdminGiris.jpg"
     },
     {
       "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\alex-litvin-MAYsdoYpGuk-unsplash.jpg",
@@ -186,25 +205,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Layout_image.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\roman-skrypnyk-gjA24divsqw-unsplash.jpg",
-      "SourceId": "BingolSinema",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\",
-      "BasePath": "_content/BingolSinema",
-      "RelativePath": "images/roman-skrypnyk-gjA24divsqw-unsplash.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\roman-skrypnyk-gjA24divsqw-unsplash.jpg"
     },
     {
       "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\js\\site.js",

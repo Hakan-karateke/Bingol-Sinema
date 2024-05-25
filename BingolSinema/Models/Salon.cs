@@ -11,7 +11,7 @@ public class Salon
     public int Kapasite { get; set; }
 
     // İlişkiler
-    public virtual ICollection<Seans> Seanslar { get; set; }
+    public virtual ICollection<Seans>? Seanslar { get; set; }
 }
 
 }

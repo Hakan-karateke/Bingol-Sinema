@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\AdminGiris.jpg",
+      "PackagePath": "staticwebassets\\images\\AdminGiris.jpg"
+    },
+    {
       "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\BingolSinemaLogo.jpg",
       "PackagePath": "staticwebassets\\images\\BingolSinemaLogo.jpg"
     },
@@ -31,10 +35,6 @@
     {
       "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\john-moeses-bauan-WG1HNF8PGHo-unsplash.jpg",
       "PackagePath": "staticwebassets\\images\\john-moeses-bauan-WG1HNF8PGHo-unsplash.jpg"
-    },
-    {
-      "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\roman-skrypnyk-gjA24divsqw-unsplash.jpg",
-      "PackagePath": "staticwebassets\\images\\roman-skrypnyk-gjA24divsqw-unsplash.jpg"
     },
     {
       "Id": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\js\\site.js",

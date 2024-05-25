@@ -134,5 +134,24 @@ namespace BingolSinema.Controllers
             }
             return View(salon);
         }
+
+         // New actions for AdminOl (Admin Sign Up)
+        public IActionResult AdminOl()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminOl(Admin admin)
+        {
+            if (ModelState.IsValid)
+            {
+                admin.KayitTarihi = DateTime.Now; // Set the registration date
+                _context.Admins.Add(admin);
+                _context.SaveChanges();
+                return RedirectToAction("Giris"); // Redirect to the login page after successful registration
+            }
+            return View(admin);
+        }
     }
 }

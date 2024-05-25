@@ -1,0 +1,71 @@
+@{
+    ViewBag.Title = "Admin Ol";
+}
+
+<style>
+    body {
+        background-image: url('~/images/AdminGiris.jpg'); /* Replace with your image URL */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+    }
+
+    .adminol-container {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: 100px auto;
+    }
+
+    .form-group label {
+        font-size: 1.2em;
+    }
+
+    .btn-custom {
+        background-color: #007bff;
+        border: none;
+        font-size: 1.2em;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="adminol-container">
+    <h2 class="text-center">Admin Ol</h2>
+    <form asp-action="AdminOl" method="post">
+        <div class="form-group">
+            <label for="AdminAdi">Admin Adı</label>
+            <input type="text" class="form-control" id="AdminAdi" name="AdminAdi" required />
+        </div>
+        <div class="form-group">
+            <label for="Adi">Adı</label>
+            <input type="text" class="form-control" id="Adi" name="Adi" required />
+        </div>
+        <div class="form-group">
+            <label for="Soyadi">Soyadı</label>
+            <input type="text" class="form-control" id="Soyadi" name="Soyadi" required />
+        </div>
+        <div class="form-group">
+            <label for="Yas">Yaş</label>
+            <input type="number" class="form-control" id="Yas" name="Yas" required />
+        </div>
+        <div class="form-group">
+            <label for="Sifre">Şifre</label>
+            <input type="password" class="form-control" id="Sifre" name="Sifre" required />
+        </div>
+        <div class="form-group">
+            <label for="Cinsiyet">Cinsiyet</label>
+            <select class="form-control" id="Cinsiyet" name="Cinsiyet" required>
+                <option value="true">Erkek</option>
+                <option value="false">Kadın</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-custom btn-block">Kaydol</button>
+    </form>
+</div>

@@ -19,12 +19,12 @@ public class Seans
 
     // İlişkiler
     [ForeignKey("FilmID")]
-    public virtual Film Film { get; set; }
+    public virtual Film? Film { get; set; }
 
     [ForeignKey("SalonID")]
-    public virtual Salon Salon { get; set; }
+    public virtual Salon? Salon { get; set; }
 
-    public virtual ICollection<Rezervasyon> Rezervasyonlar { get; set; }
+    public virtual ICollection<Rezervasyon>? Rezervasyonlar { get; set; }
 }
 
 }

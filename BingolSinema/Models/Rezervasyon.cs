@@ -13,7 +13,7 @@ public class Rezervasyon
 
     // İlişkiler
     [ForeignKey("SeansID")]
-    public virtual Seans Seans { get; set; }
+    public virtual Seans? Seans { get; set; }
 }
 
 }

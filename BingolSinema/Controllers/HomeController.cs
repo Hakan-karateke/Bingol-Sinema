@@ -15,7 +15,28 @@ public class HomeController : Controller
             _context = context;
         }
 
-        // 5. Yönetici girişi için kimlik doğrulama mekanizması
+
+        // GET: UyeOl
+        public IActionResult UyeOl()
+        {
+            return View();
+        }
+
+        // POST: UyeOl
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UyeOl(Kullanici kullanici)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Kullanicis.Add(kullanici);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(kullanici);
+        }
+
+        // 5. Kullanıcı girişi için kimlik doğrulama mekanizması
         public IActionResult Giris()
         {
             return View();
@@ -67,7 +88,7 @@ public class HomeController : Controller
         }
 
         [HttpPost]
-        public IActionResult Odeme(Rezervasyon rezervasyon, decimal fiyat)
+        public IActionResult Odeme(Rezervasyon rezervasyon, double fiyat)
         {
             if (ModelState.IsValid)
             {

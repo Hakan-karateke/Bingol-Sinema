@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\karat\Desktop\Git Repos\Bingol-Sinema\BingolSinema
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/AdminOl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5PbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Admin/FilmEkle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRmlsbUVrbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -64,6 +68,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/Seanslar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFuc2xhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Home/UyeOl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVeWVPbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/karat/Desktop/Git Repos/Bingol-Sinema/BingolSinema/Views/Shared/Error.cshtml]

@@ -31,9 +31,22 @@
         border-radius: 5px;
     }
 
-        .btn-custom:hover {
-            background-color: #0056b3;
-        }
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-uye-ol {
+        background-color: #28a745;
+        border: none;
+        font-size: 1.2em;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .btn-uye-ol:hover {
+        background-color: #218838;
+    }
 </style>
 
 <div class="login-container">
@@ -50,4 +63,8 @@
         </div>
         <button type="submit" class="btn btn-custom btn-block">Giriş Yap</button>
     </form>
+
+    <div class="text-center">
+        <a asp-action="UyeOl" class="btn btn-uye-ol">ÜYE OL</a>
+    </div>
 </div>
