@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Controllers",
-    "\\Views",
-    "\\Views\\Home"
+    "\\Views"
   ],
-  "SelectedNode": "\\Views\\Home\\Giris.cshtml",
+  "SelectedNode": "\\BingolSinema.csproj",
   "PreviewInSolutionExplorer": false
 }

@@ -7,7 +7,7 @@ namespace BingolSinema.Controllers
     public class AdminController : Controller
     {
         private readonly MyDbContext _context;
-        public Admin? GirisYapanAdmin = null;
+        public static Admin? GirisYapanAdmin = null;
 
         public AdminController(MyDbContext context)
         {
@@ -85,6 +85,7 @@ namespace BingolSinema.Controllers
             {
                 // Kimlik doğrulama başarılı
                 // Admin oturumunu aç (örneğin, bir session oluştur)
+                GirisYapanAdmin=admin;
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Geçersiz kullanıcı adı veya şifre");
@@ -135,9 +136,15 @@ namespace BingolSinema.Controllers
             return View(salon);
         }
 
+        
+
          // New actions for AdminOl (Admin Sign Up)
         public IActionResult AdminOl()
         {
+            if(GirisYapanAdmin==null)
+            {
+                return RedirectToAction("Giris");
+            }
             return View();
         }
 

@@ -71,6 +71,11 @@ public class HomeController : Controller
         public IActionResult Seanslar(int filmId)
         {
             var seanslar = _context.Seanss.Where(s => s.FilmID == filmId).ToList();
+            foreach (var seans in seanslar)
+            {
+                // Retrieve the Salon object corresponding to the Seans
+                seans.Salon = _context.Salons.FirstOrDefault(s => s.SalonID == seans.SalonID);
+            }
             return View(seanslar);
         }
 

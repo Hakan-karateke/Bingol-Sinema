@@ -1,27 +1,19 @@
 @model BingolSinema.Models.Salon
 
 @{
-    ViewData["Title"] = "Salon Ekle";
+    ViewBag.Title = "Salon Ekle";
 }
 
 <h2>Salon Ekle</h2>
 
-<form asp-action="SalonEkle" method="post" class="form-horizontal">
+<form asp-action="SalonEkle" method="post">
     <div class="form-group">
-        <label asp-for="SalonAdi" class="control-label"></label>
-        <input asp-for="SalonAdi" class="form-control" />
-        <span asp-validation-for="SalonAdi" class="text-danger"></span>
+        <label for="SalonAdi">Salon Adı</label>
+        <input type="text" class="form-control" id="SalonAdi" name="SalonAdi" required />
     </div>
     <div class="form-group">
-        <label asp-for="Kapasite" class="control-label"></label>
-        <input asp-for="Kapasite" class="form-control" />
-        <span asp-validation-for="Kapasite" class="text-danger"></span>
+        <label for="Kapasite">Kapasite</label>
+        <input type="number" class="form-control" id="Kapasite" name="Kapasite" required />
     </div>
-    <div class="form-group">
-        <input type="submit" value="Ekle" class="btn btn-primary" />
-    </div>
+    <button type="submit" class="btn btn-primary">Ekle</button>
 </form>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
