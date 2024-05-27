@@ -1,16 +1,28 @@
 @model IEnumerable<BingolSinema.Models.Film>
 
 @{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewBag.Title = "Yönetici Paneli";
 }
+
+<style>
+    body {
+        background: url('/images/AdminIndex.jpg') no-repeat center center fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+    }
+</style>
 
 <h2>Yönetici Paneli</h2>
 
 <a href="@Url.Action("FilmEkle", "Admin")" class="btn btn-success">Film Ekle</a>
 <a href="@Url.Action("SeansEkle", "Admin")" class="btn btn-primary">Seans Ekle</a>
-<a href="@Url.Action("SalonEkle", "Admin")" class="btn btn-warning">Salon Ekle</a> <!-- New Button for SalonEkle -->
-<a href="@Url.Action("AdminOl","Admin")" class="btn btn-warning">Admin Ekle</a> <!-- Admin ekleme Butonu -->
-
+<a href="@Url.Action("SalonEkle", "Admin")" class="btn btn-warning">Salon Ekle</a>
+<a href="@Url.Action("AdminOl", "Admin")" class="btn btn-warning">Admin Ekle</a>
+<a href="@Url.Action("Raporlar", "Admin")" class="btn btn-primary">Raporlar</a>
+<a href="@Url.Action("TurEkle", "Admin")" class="btn btn-warning">Film Türü Ekle</a>
 
 <h3>Mevcut Filmler</h3>
 <table class="table">

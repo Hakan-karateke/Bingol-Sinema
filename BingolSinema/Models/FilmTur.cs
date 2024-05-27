@@ -1,11 +1,11 @@
-namespace BingolSinema.Models
-{
 using System.ComponentModel.DataAnnotations;
 
-public class FilmTur
+namespace BingolSinema.Models
 {
-    [Key]
-    public int TurID{get; set; }
-    public required string Tur{ get; set; }
-}
+    public class FilmTur
+    {
+        [Key]
+        public int TurID{get; set; }
+        public required string Tur{ get; set; }
+    }
 }

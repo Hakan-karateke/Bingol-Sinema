@@ -15,6 +15,9 @@ public class Kullanici
     public required string Soyad {get;set;}
     public required int Yas{get;set;}
 
+        // Navigation properties
+    public virtual ICollection<Rezervasyon> Rezervasyons { get; set; }
+
     // Diğer özellikler eklenebilir
 }
 }

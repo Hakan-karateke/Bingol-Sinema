@@ -4,6 +4,7 @@ using BingolSinema.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BingolSinema.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240527144155_AddNewPropertiesToBiletandS1")]
+    partial class AddNewPropertiesToBiletandS1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,8 +184,6 @@ namespace BingolSinema.Migrations
 
                     b.HasKey("RezervasyonID");
 
-                    b.HasIndex("KullaniciID");
-
                     b.HasIndex("SeansID");
 
                     b.ToTable("Rezervasyons");
@@ -242,12 +243,6 @@ namespace BingolSinema.Migrations
 
             modelBuilder.Entity("BingolSinema.Models.Rezervasyon", b =>
                 {
-                    b.HasOne("BingolSinema.Models.Kullanici", null)
-                        .WithMany("Rezervasyons")
-                        .HasForeignKey("KullaniciID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BingolSinema.Models.Seans", "Seans")
                         .WithMany("Rezervasyonlar")
                         .HasForeignKey("SeansID")
@@ -274,11 +269,6 @@ namespace BingolSinema.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("Salon");
-                });
-
-            modelBuilder.Entity("BingolSinema.Models.Kullanici", b =>
-                {
-                    b.Navigation("Rezervasyons");
                 });
 
             modelBuilder.Entity("BingolSinema.Models.Salon", b =>

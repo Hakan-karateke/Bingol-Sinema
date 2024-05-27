@@ -4,6 +4,7 @@ using BingolSinema.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BingolSinema.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240527140106_AddNewPropertiesToBiletandSeans")]
+    partial class AddNewPropertiesToBiletandSeans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,8 +71,8 @@ namespace BingolSinema.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BiletID"));
 
-                    b.Property<int>("Fiyat")
-                        .HasColumnType("int");
+                    b.Property<double>("Fiyat")
+                        .HasColumnType("float");
 
                     b.Property<int>("RezervasyonID")
                         .HasColumnType("int");
@@ -88,10 +91,6 @@ namespace BingolSinema.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FilmID"));
 
                     b.Property<string>("FilmAdi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilmResimUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -181,8 +180,6 @@ namespace BingolSinema.Migrations
 
                     b.HasKey("RezervasyonID");
 
-                    b.HasIndex("KullaniciID");
-
                     b.HasIndex("SeansID");
 
                     b.ToTable("Rezervasyons");
@@ -228,9 +225,6 @@ namespace BingolSinema.Migrations
                     b.Property<int>("SalonID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SeansFiyat")
-                        .HasColumnType("int");
-
                     b.HasKey("SeansID");
 
                     b.HasIndex("FilmID");
@@ -242,12 +236,6 @@ namespace BingolSinema.Migrations
 
             modelBuilder.Entity("BingolSinema.Models.Rezervasyon", b =>
                 {
-                    b.HasOne("BingolSinema.Models.Kullanici", null)
-                        .WithMany("Rezervasyons")
-                        .HasForeignKey("KullaniciID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BingolSinema.Models.Seans", "Seans")
                         .WithMany("Rezervasyonlar")
                         .HasForeignKey("SeansID")
@@ -274,11 +262,6 @@ namespace BingolSinema.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("Salon");
-                });
-
-            modelBuilder.Entity("BingolSinema.Models.Kullanici", b =>
-                {
-                    b.Navigation("Rezervasyons");
                 });
 
             modelBuilder.Entity("BingolSinema.Models.Salon", b =>

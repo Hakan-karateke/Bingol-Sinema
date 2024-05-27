@@ -31,6 +31,8 @@ namespace BingolSinema.Controllers
             {
                 return RedirectToAction("Giris");
             }
+            var filmTurler = _context.FilmTurs.ToList();
+            ViewBag.FilmTurler= filmTurler;
             return View();
         }
 
@@ -95,15 +97,22 @@ namespace BingolSinema.Controllers
         // 8. İstatistikleri gösteren raporlama ekranı
         public IActionResult Raporlar()
         {
-            var filmGosterimSayilari = _context.Seanss.GroupBy(s => s.Film.FilmAdi)
-                .Select(g => new { Film = g.Key, GosterimSayisi = g.Count() }).ToList();
+            var filmGosterimSayilari = _context.Seanss
+                .GroupBy(s => s.Film.FilmAdi)
+                .Select(g => new { Film = g.Key, GosterimSayisi = g.Count() })
+                .ToList();
 
-            var salonDolulukOranlari = _context.Seanss.GroupBy(s => s.Salon)
-                .Select(g => new { Salon = g.Key.SalonAdi, DolulukOrani = (double)g.Sum(s => s.Rezervasyonlar.Count) / g.Key.Kapasite }).ToList();
+            var salonDolulukOranlari = _context.Seanss
+                .GroupBy(s => s.Salon)
+                .Select(g => new { Salon = g.Key.SalonAdi, DolulukOrani = (double)g.Sum(s => s.Rezervasyonlar.Count) / g.Key.Kapasite })
+                .ToList();
 
-            var enPopulerFilmler = _context.Seanss.GroupBy(s => s.Film.FilmAdi)
+            var enPopulerFilmler = _context.Seanss
+                .GroupBy(s => s.Film.FilmAdi)
                 .OrderByDescending(g => g.Sum(s => s.Rezervasyonlar.Count))
-                .Select(g => g.Key).Take(5).ToList();
+                .Select(g => g.Key)
+                .Take(5)
+                .ToList();
 
             ViewBag.FilmGosterimSayilari = filmGosterimSayilari;
             ViewBag.SalonDolulukOranlari = salonDolulukOranlari;
@@ -159,6 +168,28 @@ namespace BingolSinema.Controllers
                 return RedirectToAction("Giris"); // Redirect to the login page after successful registration
             }
             return View(admin);
+        }
+
+        // New actions for TurEkle (Add Film Type)
+        public IActionResult TurEkle()
+        {
+            if(GirisYapanAdmin == null)
+            {
+                return RedirectToAction("Giris");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult TurEkle(FilmTur filmTur)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.FilmTurs.Add(filmTur);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(filmTur);
         }
     }
 }

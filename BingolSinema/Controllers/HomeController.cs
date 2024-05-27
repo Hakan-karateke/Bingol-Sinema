@@ -93,7 +93,7 @@ public class HomeController : Controller
         }
 
         [HttpPost]
-        public IActionResult Odeme(Rezervasyon rezervasyon, double fiyat)
+        public IActionResult Odeme(Rezervasyon rezervasyon, int fiyat)
         {
             if (ModelState.IsValid)
             {

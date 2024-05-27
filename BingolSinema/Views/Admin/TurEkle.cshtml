@@ -1,0 +1,16 @@
+@model BingolSinema.Models.FilmTur
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Film Türü Ekle";
+}
+
+<h2>Film Türü Ekle</h2>
+
+<form asp-action="TurEkle" method="post">
+    <div class="form-group">
+        <label for="Tur">Film Türü</label>
+        <input type="text" class="form-control" id="Tur" name="Tur" required />
+    </div>
+    <button type="submit" class="btn btn-success">Ekle</button>
+</form>

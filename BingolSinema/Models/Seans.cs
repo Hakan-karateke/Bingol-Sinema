@@ -14,6 +14,7 @@ public class Seans
     public int SeansID { get; set; }
     public int FilmID { get; set; }
     public int SalonID { get; set; }
+    public int SeansFiyat{get;set;}
     public DateTime BaslangicZamani { get; set; }
     public DateTime BitisZamani { get; set; }
 
