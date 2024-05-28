@@ -11,29 +11,35 @@
         background-attachment: fixed;
         color: #fff;
     }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .card {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        width: 18rem;
+        margin: 20px;
+    }
+    .card-img-top {
+        height: 300px;
+        object-fit: cover;
+    }
 </style>
-<h2>Film Seçimi</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Film Adı</th>
-            <th>Yönetmen</th>
-            <th>Yıl</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var film in Model)
-        {
-            <tr>
-                <td>@film.FilmAdi</td>
-                <td>@film.Yönetmen</td>
-                <td>@film.Yil</td>
-                <td>
-                    <a href="@Url.Action("Seanslar", "Home", new { filmId = film.FilmID })" class="btn btn-primary">Seansları Görüntüle</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<h2>Film Seçimi</h2>
+<div class="card-container">
+    @foreach (var film in Model)
+    {
+        <div class="card">
+            <img class="card-img-top" src="@film.FilmResimUrl" alt="@film.FilmAdi">
+            <div class="card-body">
+                <h5 class="card-title">@film.FilmAdi</h5>
+                <p class="card-text"><strong>Yönetmen:</strong> @film.Yönetmen</p>
+                <p class="card-text"><strong>Yıl:</strong> @film.Yil</p>
+                <a href="@Url.Action("Seanslar", "Home", new { filmId = film.FilmID })" class="btn btn-primary">Seansları Görüntüle</a>
+            </div>
+        </div>
+    }
+</div>

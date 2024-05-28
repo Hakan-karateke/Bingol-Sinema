@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wJNIBGoJjwrMCDLzgTCPDGNwyP3586aR3IUyVj671xE=",
+  "Hash": "iBSRPqYP8G/jz55EiWNVyl8wZOTJ2HC3dpyoQf27xak=",
   "Source": "BingolSinema",
   "BasePath": "_content/BingolSinema",
   "Mode": "Default",
@@ -112,25 +112,6 @@
       "OriginalItemSpec": "wwwroot\\images\\AdminGiris.jpg"
     },
     {
-      "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\alex-litvin-MAYsdoYpGuk-unsplash.jpg",
-      "SourceId": "BingolSinema",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\",
-      "BasePath": "_content/BingolSinema",
-      "RelativePath": "images/alex-litvin-MAYsdoYpGuk-unsplash.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\alex-litvin-MAYsdoYpGuk-unsplash.jpg"
-    },
-    {
       "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\BingolSinemaLogo.jpg",
       "SourceId": "BingolSinema",
       "SourceType": "Discovered",
@@ -167,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\denise-jans-tV80374iytg-unsplash.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\HomeIndex.jpg",
+      "SourceId": "BingolSinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\",
+      "BasePath": "_content/BingolSinema",
+      "RelativePath": "images/HomeIndex.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\HomeIndex.jpg"
     },
     {
       "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\john-moeses-bauan-WG1HNF8PGHo-unsplash.jpg",

@@ -1,17 +1,20 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BingolSinema.Models
 {
+    // Bilet sınıfı
+    public class Bilet
+    {
+        [Key]
+        public int BiletID { get; set; }
+        public int RezervasyonID { get; set; } // Changed from 'required' to 'int'
+        public int Fiyat { get; set; }
 
-// Bilet sınıfı
-using System.ComponentModel.DataAnnotations;
+        // Navigation property to Rezervasyon
+        [ForeignKey("RezervasyonID")]
+        public virtual Rezervasyon Rezervasyon { get; set; } // Ensure Rezervasyon class is defined
 
-public class Bilet
-{
-    [Key]
-    public int BiletID { get; set; }
-    public required int RezervasyonID { get; set; }
-    public required int Fiyat { get; set; }
-
-    // Diğer özellikler eklenebilir
-}
-
+        // Diğer özellikler eklenebilir
+    }
 }

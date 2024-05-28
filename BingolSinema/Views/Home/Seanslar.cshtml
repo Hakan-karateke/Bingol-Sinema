@@ -2,30 +2,55 @@
 
 @{
     ViewBag.Title = "Seans Seçimi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    body {
+        background: url('/images/HomeIndex.jpg') no-repeat center center fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .card {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        width: 20rem;
+        margin: 20px;
+    }
+    .card-header {
+        font-weight: bold;
+    }
+    .card-body p {
+        margin: 0;
+    }
+    .card-body .btn {
+        margin-top: 10px;
+    }
+</style>
 
 <h2>Seans Seçimi</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Başlangıç Zamanı</th>
-            <th>Bitiş Zamanı</th>
-            <th>Salon</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var seans in Model)
-        {
-            <tr>
-                <td>@seans.BaslangicZamani</td>
-                <td>@seans.BitisZamani</td>
-                <td>@seans.Salon.SalonAdi</td>
-                <td>
-                    <a href="@Url.Action("Odeme", "Home", new { seansId = seans.SeansID })" class="btn btn-primary">Bilet Al</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="card-container">
+    @foreach (var seans in Model)
+    {
+        <div class="card">
+            <div class="card-header">
+                @seans.Film.FilmAdi
+            </div>
+            <div class="card-body">
+                <p><strong>Başlangıç Zamanı:</strong> @seans.BaslangicZamani.ToString("dd MMM yyyy, HH:mm")</p>
+                <p><strong>Bitiş Zamanı:</strong> @seans.BitisZamani.ToString("dd MMM yyyy, HH:mm")</p>
+                <p><strong>Salon:</strong> @seans.Salon.SalonAdi</p>
+                <p><strong>Fiyat:</strong> @seans.SeansFiyat ₺</p>
+                <a href="@Url.Action("Odeme", "Home", new { seansId = seans.SeansID })" class="btn btn-primary">Bilet Al</a>
+            </div>
+        </div>
+    }
+</div>

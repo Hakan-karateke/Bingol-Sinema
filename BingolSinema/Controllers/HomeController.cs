@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BingolSinema.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BingolSinema.Controllers;
     
@@ -75,42 +76,84 @@ public class HomeController : Controller
             {
                 // Retrieve the Salon object corresponding to the Seans
                 seans.Salon = _context.Salons.FirstOrDefault(s => s.SalonID == seans.SalonID);
+                seans.Film = _context.Films.FirstOrDefault(s=> s.FilmID == seans.FilmID);
             }
+
+
+            
             return View(seanslar);
         }
 
         // 3. Bilet satın alma işlemi için ödeme ekranı
         public IActionResult Odeme(int seansId, int koltukNumarasi)
         {
-            var seans = _context.Seanss.Find(seansId);
-            var rezervasyon = new Rezervasyon
+            var seans = _context.Seanss.Include(s => s.Salon).FirstOrDefault(s => s.SeansID == seansId);
+            if (seans == null)
             {
-                SeansID = seansId,
-                KoltukNumarasi = koltukNumarasi,
-                //KullaniciID = _context.Kullanici.KullaniciID// Kullanıcı kimliği burada belirlenmeli
+                return NotFound();
+            }
+
+            var rezervasyonlar = _context.Rezervasyons.Where(r => r.SeansID == seansId).ToList();
+            var biletler = _context.Bilets.Where(b => rezervasyonlar.Select(r => r.RezervasyonID).Contains(b.RezervasyonID)).ToList();
+
+            var viewModel = new OdemeViewModel
+            {
+                Seans = seans,
+                Biletler = biletler,
+                Rezervasyon = new Rezervasyon { SeansID = seansId }
             };
-            return View(rezervasyon);
+
+            return View(viewModel);
         }
 
+
         [HttpPost]
-        public IActionResult Odeme(Rezervasyon rezervasyon, int fiyat)
+        public IActionResult Odeme(OdemeViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Rezervasyons.Add(rezervasyon);
-                _context.SaveChanges();
+                // Check if the selected seat is available
+                var isSeatAvailable = !_context.Bilets
+                    .Any(b => b.Rezervasyon.SeansID == model.Seans.SeansID && b.Rezervasyon.KoltukNumarasi == model.KoltukNumarasi);
 
-                var bilet = new Bilet
+                if (isSeatAvailable)
                 {
-                    RezervasyonID = rezervasyon.RezervasyonID,
-                    Fiyat = fiyat
-                };
-                _context.Bilets.Add(bilet);
-                _context.SaveChanges();
+                    // Create a new reservation and ticket
+                    var rezervasyon = new Rezervasyon
+                    {
+                        SeansID = model.Seans.SeansID,
+                        KullaniciID = 1, // Assuming there's a logged-in user, replace with actual user ID
+                        KoltukNumarasi = model.KoltukNumarasi
+                    };
+                    _context.Rezervasyons.Add(rezervasyon);
+                    _context.SaveChanges();
 
-                return RedirectToAction("Index");
+                    var bilet = new Bilet
+                    {
+                        RezervasyonID = rezervasyon.RezervasyonID,
+                        Fiyat = model.Seans.SeansFiyat
+                    };
+                    _context.Bilets.Add(bilet);
+                    _context.SaveChanges();
+
+                    // Redirect to a success page or show a success message
+                    return RedirectToAction("Success");
+                }
+                else
+                {
+                    // Seat is already reserved, display error message
+                    ModelState.AddModelError(string.Empty, "Seçtiğiniz koltuk zaten alınmış.");
+                }
             }
-            return View(rezervasyon);
+
+            // If model state is not valid or seat is not available, return to the payment page
+            return View("Odeme", model);
+        }
+
+        public IActionResult Success()
+        {
+            // Action for displaying payment success page
+            return View();
         }
 
         // 6. Kullanıcıların rezervasyonlarını iptal edebilmesi veya değişiklik yapabilmesi için ekran

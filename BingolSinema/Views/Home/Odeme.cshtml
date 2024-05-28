@@ -1,19 +1,80 @@
-@model BingolSinema.Models.Rezervasyon
+@model OdemeViewModel
 
 @{
     ViewBag.Title = "Ödeme Ekranı";
 }
 
+<style>
+    .seat {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+    }
+    .available {
+        background-color: green;
+        color: white;
+    }
+    .unavailable {
+        background-color: red;
+        color: white;
+        cursor: not-allowed;
+    }
+    .selected {
+        background-color: yellow;
+        color: black;
+    }
+    .row {
+        display: flex;
+    }
+</style>
+
 <h2>Ödeme Ekranı</h2>
 
-<form asp-action="Odeme" method="post">
+<div>
+    <h3>Salon: @Model.Seans.Salon.SalonAdi</h3>
+    <h4>Fiyat: @Model.Seans.SeansFiyat ₺</h4>
+</div>
+
+<div>
+    <h4>Koltuk Seçimi</h4>
+    <div class="seat-container">
+        @for (int row = 1; row <= 2; row++)
+        {
+            <div class="row">
+                @for (int seatNumber = 1; seatNumber <= 10; seatNumber++)
+                {
+                    int seatIndex = (row - 1) * 10 + seatNumber;
+                    var seatClass = Model.Biletler.Any(b => b.Rezervasyon.KoltukNumarasi == seatIndex) ? "unavailable" : "available";
+                    <div class="seat @seatClass" data-seat="@seatIndex">@seatIndex</div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<form asp-action="Odeme" method="post" id="paymentForm">
     <div class="form-group">
         <label for="KoltukNumarasi">Koltuk Numarası</label>
-        <input type="number" class="form-control" id="KoltukNumarasi" name="KoltukNumarasi" required />
+        <input type="number" class="form-control" id="KoltukNumarasi" name="KoltukNumarasi" readonly required />
     </div>
     <div class="form-group">
         <label for="Fiyat">Fiyat</label>
-        <input type="number" class="form-control" id="Fiyat" name="Fiyat" step="0.01" required />
+        <input type="number" class="form-control" id="Fiyat" name="Fiyat" value="@Model.Seans.SeansFiyat" readonly required />
     </div>
     <button type="submit" class="btn btn-success">Satın Al</button>
 </form>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.seat.available').forEach(seat => {
+            seat.addEventListener('click', function () {
+                document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
+                seat.classList.add('selected');
+                document.getElementById('KoltukNumarasi').value = seat.dataset.seat;
+            });
+        });
+    </script>
+}
