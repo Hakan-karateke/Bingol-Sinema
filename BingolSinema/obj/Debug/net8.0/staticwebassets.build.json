@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iBSRPqYP8G/jz55EiWNVyl8wZOTJ2HC3dpyoQf27xak=",
+  "Hash": "nfvuLYOO0ORJdtdOapXAcS1q/OlevwwCbMBHkoCCXR0=",
   "Source": "BingolSinema",
   "BasePath": "_content/BingolSinema",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Layout_image.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\images\\Rezervasyonlarim.jpg",
+      "SourceId": "BingolSinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\",
+      "BasePath": "_content/BingolSinema",
+      "RelativePath": "images/Rezervasyonlarim.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Rezervasyonlarim.jpg"
     },
     {
       "Identity": "C:\\Users\\karat\\Desktop\\Git Repos\\Bingol-Sinema\\BingolSinema\\wwwroot\\js\\site.js",

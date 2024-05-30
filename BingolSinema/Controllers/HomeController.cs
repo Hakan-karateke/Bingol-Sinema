@@ -9,13 +9,14 @@ public class HomeController : Controller
 {
         private readonly MyDbContext _context;
 
-        public Kullanici? GirisYapanKullanici= null;
+        public static Kullanici? GirisYapanKullanici= null;
+
+        public static OdemeViewModel? OdemeViewModelKullanıcı;
 
         public HomeController(MyDbContext context)
         {
             _context = context;
         }
-
 
         // GET: UyeOl
         public IActionResult UyeOl()
@@ -28,13 +29,11 @@ public class HomeController : Controller
         [ValidateAntiForgeryToken]
         public IActionResult UyeOl(Kullanici kullanici)
         {
-            if (ModelState.IsValid)
-            {
+                GirisYapanKullanici=kullanici;
                 _context.Kullanicis.Add(kullanici);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View(kullanici);
+
         }
 
         // 5. Kullanıcı girişi için kimlik doğrulama mekanizması
@@ -49,6 +48,7 @@ public class HomeController : Controller
             var kullanici = _context.Kullanicis.FirstOrDefault(a => a.KullaniciAdi == KullaniciAdi && a.Sifre == Sifre);
             if (kullanici != null)
             {
+                GirisYapanKullanici=kullanici;
                 // Kimlik doğrulama başarılı
                 // Admin oturumunu aç (örneğin, bir session oluştur)
                 return RedirectToAction("Index");
@@ -96,21 +96,29 @@ public class HomeController : Controller
             var rezervasyonlar = _context.Rezervasyons.Where(r => r.SeansID == seansId).ToList();
             var biletler = _context.Bilets.Where(b => rezervasyonlar.Select(r => r.RezervasyonID).Contains(b.RezervasyonID)).ToList();
 
-            var viewModel = new OdemeViewModel
+            OdemeViewModelKullanıcı = new OdemeViewModel
             {
                 Seans = seans,
                 Biletler = biletler,
                 Rezervasyon = new Rezervasyon { SeansID = seansId }
             };
 
-            return View(viewModel);
+            return View(OdemeViewModelKullanıcı);
         }
-
 
         [HttpPost]
         public IActionResult Odeme(OdemeViewModel model)
         {
-            if (ModelState.IsValid)
+            
+            OdemeViewModelKullanıcı.KoltukNumarasi=model.KoltukNumarasi;
+
+            model.Biletler= OdemeViewModelKullanıcı.Biletler;
+            model.Seans=OdemeViewModelKullanıcı.Seans;
+            model.Rezervasyon= OdemeViewModelKullanıcı.Rezervasyon;
+
+
+            ///model için eşleştirmeler yapılacak seans 
+            if (model.KoltukNumarasi != null )
             {
                 // Check if the selected seat is available
                 var isSeatAvailable = !_context.Bilets
@@ -137,7 +145,7 @@ public class HomeController : Controller
                     _context.SaveChanges();
 
                     // Redirect to a success page or show a success message
-                    return RedirectToAction("Success");
+                    return RedirectToAction("Success",rezervasyon.KoltukNumarasi);
                 }
                 else
                 {
@@ -150,19 +158,61 @@ public class HomeController : Controller
             return View("Odeme", model);
         }
 
-        public IActionResult Success()
+        public IActionResult Success(int KoltukNumarasi)
         {
             // Action for displaying payment success page
-            return View();
+            return View(KoltukNumarasi);
         }
 
         // 6. Kullanıcıların rezervasyonlarını iptal edebilmesi veya değişiklik yapabilmesi için ekran
         public IActionResult Rezervasyonlarim()
         {
-            int kullaniciId = 0; //_context.Kullanici.KullaniciID;// Kullanıcı kimliği burada belirlenmeli
-            List<Rezervasyon> Rezervasyonlarim = _context.Rezervasyons.Where(r => r.KullaniciID == kullaniciId).ToList();
-            return View(Rezervasyonlarim);
+            if (GirisYapanKullanici == null)
+            {
+                return RedirectToAction("Giris");
+            }
+
+            int kullaniciId = GirisYapanKullanici.KullaniciID;
+            var kullanici = _context.Kullanicis.Find(kullaniciId);
+            var rezervasyonlar = _context.Rezervasyons
+                .Where(r => r.KullaniciID == kullaniciId)
+                .ToList();
+
+            foreach(var rezervasyon in rezervasyonlar)
+            {
+                rezervasyon.Seans = _context.Seanss.FirstOrDefault(s => s.SeansID == rezervasyon.SeansID);
+                rezervasyon.Seans.Film = _context.Films.FirstOrDefault(s => s.FilmID == rezervasyon.Seans.FilmID);
+                rezervasyon.Seans.Salon= _context.Salons.FirstOrDefault(s=> s.SalonID == rezervasyon.Seans.SalonID);
+            }
+
+            var viewModel = new UserProfileViewModel
+            {
+                User = kullanici,
+                Reservations = rezervasyonlar
+            };
+
+            return View(viewModel);
         }
+
+        [HttpPost]
+        public IActionResult CancelReservation(int id)
+        {
+            var rezervasyon = _context.Rezervasyons.Find(id);
+            if (rezervasyon != null)
+            {
+                var bilet = _context.Bilets.FirstOrDefault(b => b.RezervasyonID == id);
+                if (bilet != null)
+                {
+                    _context.Bilets.Remove(bilet);
+                }
+                _context.Rezervasyons.Remove(rezervasyon);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Rezervasyonlarim");
+        }
+
+
+
 
         public IActionResult IptalEt(int rezervasyonId)
         {
@@ -179,4 +229,28 @@ public class HomeController : Controller
             }
             return RedirectToAction("Rezervasyonlarim");
         }
+    
+    
+        [HttpPost]
+        public IActionResult DownloadProfile()
+        {
+            if (GirisYapanKullanici == null)
+            {
+                return RedirectToAction("Giris");
+            }
+
+            int kullaniciId = GirisYapanKullanici.KullaniciID;
+            var kullanici = _context.Kullanicis.Find(kullaniciId);
+
+            // Generate a file with user profile information
+            var profileInfo = $"Name: {kullanici.Ad} {kullanici.Soyad}\n" +
+                            $"Username: {kullanici.KullaniciAdi}\n" +
+                            $"Age: {kullanici.Yas}\n" +
+                            $"Gender: {(kullanici.Cinsiyet ? "Male" : "Female")}";
+
+            var bytes = System.Text.Encoding.UTF8.GetBytes(profileInfo);
+            return File(bytes, "application/octet-stream", "UserProfile.txt");
+        }
+
+    
     }

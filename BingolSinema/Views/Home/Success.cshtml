@@ -1,14 +1,63 @@
-@model string
+@model int
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Payment Success</title>
+    <style>
+        body {
+            background: url('/images/Rezervasyonlarim.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
 </head>
 <body>
-    <h2>Payment Successful!</h2>
-    <p>Your payment was successful. Thank you for your purchase.</p>
-    <p>Transaction ID: @Model</p>
+    <div class="container">
+        <h2>Payment Successful!</h2>
+        <p>Your payment was successful. Thank you for your purchase.</p>
+        <p>Transaction ID: @Model</p>
+        <a href="@Url.Action("Rezervasyonlarim", "Home")" class="btn">Go to My Reservations</a>
+    </div>
 </body>
 </html>
