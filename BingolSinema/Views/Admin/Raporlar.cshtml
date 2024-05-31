@@ -1,61 +1,110 @@
+@model ReportViewModel
+
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewBag.Title = "İstatistiksel Raporlar";
+    ViewBag.Title = "Reports";
 }
 
-<h2>İstatistiksel Raporlar</h2>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        color: #333;
+    }
+    .container {
+        margin: 20px auto;
+        max-width: 1000px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        color: #0056b3;
+        border-bottom: 2px solid #0056b3;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+    }
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    th {
+        background-color: #f8f8f8;
+        color: #333;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tbody tr:hover {
+        background-color: #e9ecef;
+    }
+</style>
 
-<h3>Film Gösterim Sayıları</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Film</th>
-            <th>Gösterim Sayısı</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.FilmGosterimSayilari)
-        {
+<div class="container">
+    <h2>Popular Movies</h2>
+    <table>
+        <thead>
             <tr>
-                <td>@item.Film</td>
-                <td>@item.GosterimSayisi</td>
+                <th>Movie Name</th>
+                <th>Director</th>
+                <th>Booking Count</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.PopularMovies)
+            {
+                <tr>
+                    <td>@movie.Movie.FilmAdi</td>
+                    <td>@movie.Movie.Yönetmen</td>
+                    <td>@movie.BookingCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<h3>Salon Doluluk Oranları</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Salon</th>
-            <th>Doluluk Oranı</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.SalonDolulukOranlari)
-        {
+    <h2>Hall Occupancy Rates</h2>
+    <table>
+        <thead>
             <tr>
-                <td>@item.Salon</td>
-                <td>@item.DolulukOrani</td>
+                <th>Hall Name</th>
+                <th>Occupancy Rate (%)</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var hall in Model.HallOccupancies)
+            {
+                <tr>
+                    <td>@hall.Hall.SalonAdi</td>
+                    <td>@hall.OccupancyRate.ToString("F2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<h3>En Popüler Filmler</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Film</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var film in ViewBag.EnPopulerFilmler)
-        {
+    <h2>Movies by Release Year</h2>
+    <table>
+        <thead>
             <tr>
-                <td>@film</td>
+                <th>Movie Name</th>
+                <th>Director</th>
+                <th>Release Year</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.MoviesByReleaseYear)
+            {
+                <tr>
+                    <td>@movie.FilmAdi</td>
+                    <td>@movie.Yönetmen</td>
+                    <td>@movie.Yil</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

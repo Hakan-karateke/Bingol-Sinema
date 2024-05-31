@@ -307,29 +307,41 @@ namespace BingolSinema.Controllers
         // 8. İstatistikleri gösteren raporlama ekranı
         public IActionResult Raporlar()
         {
-            var filmGosterimSayilari = _context.Seanss
-                .GroupBy(s => s.Film.FilmAdi)
-                .Select(g => new { Film = g.Key, GosterimSayisi = g.Count() })
+            // Popular movies sorted by booking count
+            var popularMovies = _context.Rezervasyons
+                .GroupBy(r => r.Seans.Film)
+                .Select(g => new MoviePopularity
+                {
+                    Movie = g.Key,
+                    BookingCount = g.Count()
+                })
+                .OrderByDescending(mp => mp.BookingCount)
                 .ToList();
 
-            var salonDolulukOranlari = _context.Seanss
-                .GroupBy(s => s.Salon)
-                .Select(g => new { Salon = g.Key.SalonAdi, DolulukOrani = (double)g.Sum(s => s.Rezervasyonlar.Count) / g.Key.Kapasite })
+            // Hall occupancy rates
+            var hallOccupancies = _context.Salons
+                .Select(s => new HallOccupancy
+                {
+                    Hall = s,
+                    OccupancyRate = (double)_context.Rezervasyons.Count(r => r.Seans.SalonID == s.SalonID) / (s.Kapasite * _context.Seanss.Count(se => se.SalonID == s.SalonID)) * 100
+                })
                 .ToList();
 
-            var enPopulerFilmler = _context.Seanss
-                .GroupBy(s => s.Film.FilmAdi)
-                .OrderByDescending(g => g.Sum(s => s.Rezervasyonlar.Count))
-                .Select(g => g.Key)
-                .Take(5)
+            // Movies sorted by release year
+            var moviesByReleaseYear = _context.Films
+                .OrderBy(f => f.Yil)
                 .ToList();
 
-            ViewBag.FilmGosterimSayilari = filmGosterimSayilari;
-            ViewBag.SalonDolulukOranlari = salonDolulukOranlari;
-            ViewBag.EnPopulerFilmler = enPopulerFilmler;
+            var reportViewModel = new ReportViewModel
+            {
+                PopularMovies = popularMovies,
+                HallOccupancies = hallOccupancies,
+                MoviesByReleaseYear = moviesByReleaseYear
+            };
 
-            return View();
+            return View(reportViewModel);
         }
+
 
         // New actions for SalonEkle
         public IActionResult SalonEkle()
