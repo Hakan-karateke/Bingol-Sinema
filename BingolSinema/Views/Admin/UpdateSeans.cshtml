@@ -1,0 +1,36 @@
+@model Seans
+
+@{
+    ViewBag.Title = "Update Session";
+}
+
+<h2>Update Session</h2>
+
+<form asp-action="UpdateSeans" method="post">
+    <div class="form-group">
+        <label asp-for="FilmID"></label>
+        <input asp-for="FilmID" class="form-control" />
+        <span asp-validation-for="FilmID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SalonID"></label>
+        <input asp-for="SalonID" class="form-control" />
+        <span asp-validation-for="SalonID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BaslangicZamani"></label>
+        <input asp-for="BaslangicZamani" class="form-control" />
+        <span asp-validation-for="BaslangicZamani" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BitisZamani"></label>
+        <input asp-for="BitisZamani" class="form-control" />
+        <span asp-validation-for="BitisZamani" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SeansFiyat"></label>
+        <input asp-for="SeansFiyat" class="form-control" />
+        <span asp-validation-for="SeansFiyat" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

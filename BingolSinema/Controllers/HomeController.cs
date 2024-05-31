@@ -29,10 +29,23 @@ public class HomeController : Controller
         [ValidateAntiForgeryToken]
         public IActionResult UyeOl(Kullanici kullanici)
         {
-                GirisYapanKullanici=kullanici;
-                _context.Kullanicis.Add(kullanici);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+            // Check if the username already exists
+            var existingUser = _context.Kullanicis.FirstOrDefault(u => u.KullaniciAdi == kullanici.KullaniciAdi);
+            if (existingUser != null)
+            {
+                // Username already exists, return an error message
+                ModelState.AddModelError("KullaniciAdi", "This username is already taken. Please choose a different username.");
+                return View(kullanici);
+            }
+
+
+            GirisYapanKullanici = kullanici;
+            _context.Kullanicis.Add(kullanici);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
+            // If model state is not valid, return the view with the current model
+            return View(kullanici);
 
         }
 
@@ -57,8 +70,8 @@ public class HomeController : Controller
             return View();
         }
 
-    // 1. Kullanıcıların film seçimini yapabilecekleri ve seansları görebilecekleri ekran
-    public IActionResult Index()
+        // 1. Kullanıcıların film seçimini yapabilecekleri ve seansları görebilecekleri ekran
+        public IActionResult Index()
         {
             if(GirisYapanKullanici==null)
             {
@@ -211,9 +224,6 @@ public class HomeController : Controller
             return RedirectToAction("Rezervasyonlarim");
         }
 
-
-
-
         public IActionResult IptalEt(int rezervasyonId)
         {
             var rezervasyon = _context.Rezervasyons.Find(rezervasyonId);
@@ -229,7 +239,6 @@ public class HomeController : Controller
             }
             return RedirectToAction("Rezervasyonlarim");
         }
-    
     
         [HttpPost]
         public IActionResult DownloadProfile()
@@ -252,5 +261,8 @@ public class HomeController : Controller
             return File(bytes, "application/octet-stream", "UserProfile.txt");
         }
 
-    
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }

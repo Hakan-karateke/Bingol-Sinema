@@ -41,17 +41,22 @@
 <div>
     <h4>Koltuk Seçimi</h4>
     <div class="seat-container">
-        @for (int row = 1; row <= 2; row++)
-        {
-            <div class="row">
-                @for (int seatNumber = 1; seatNumber <= 10; seatNumber++)
-                {
-                    int seatIndex = (row - 1) * 10 + seatNumber;
-                    var seatClass = Model.Biletler.Any(b => b.Rezervasyon.KoltukNumarasi == seatIndex) ? "unavailable" : "available";
-                    <div class="seat @seatClass" data-seat="@seatIndex">@seatIndex</div>
-                }
-            </div>
-        }
+    @{
+            int totalSeats = Model.Seans.Salon.Kapasite; // Assuming 'Kapasite' holds the number of seats in the hall
+            int seatIndex = 1;
+
+            while (seatIndex <= totalSeats)
+            {
+                <div class="row">
+                    @for (int i = 0; i < 10 && seatIndex <= totalSeats; i++, seatIndex++)
+                    {
+                        var seatClass = Model.Biletler.Any(b => b.Rezervasyon.KoltukNumarasi == seatIndex) ? "unavailable" : "available";
+                        <div class="seat @seatClass" data-seat="@seatIndex">@seatIndex</div>
+                    }
+                </div>
+            }
+        }  
+        
     </div>
 </div>
 

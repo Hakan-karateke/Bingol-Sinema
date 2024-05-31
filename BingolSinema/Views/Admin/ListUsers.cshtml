@@ -1,0 +1,84 @@
+@model List<Kullanici>
+
+@{
+    ViewBag.Title = "List Users";
+}
+
+<style>
+    body {
+        background: url('/images/AdminIndex.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px auto;
+        max-width: 1200px;
+    }
+    h2 {
+        color: #fff;
+        border-bottom: 2px solid #fff;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        color: #fff;
+    }
+    .table th {
+        background-color: #333;
+    }
+    .table tr:nth-child(even) {
+        background-color: #444;
+    }
+    .btn {
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: white;
+    }
+    .btn-delete {
+        background-color: red;
+    }
+</style>
+
+<div class="container">
+    <h2>List of Users</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.KullaniciAdi</td>
+                    <td>@user.Ad @user.Soyad</td>
+                    <td>@user.Yas</td>
+                    <td>@(user.Cinsiyet ? "Male" : "Female")</td>
+                    <td>
+                        <form method="post" asp-action="DeleteUser" asp-route-id="@user.KullaniciID" style="display:inline;">
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

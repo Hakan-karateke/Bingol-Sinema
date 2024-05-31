@@ -1,0 +1,36 @@
+@model Film
+
+@{
+    ViewBag.Title = "Update Film";
+}
+
+<h2>Update Film</h2>
+
+<form asp-action="UpdateFilm" method="post">
+    <div class="form-group">
+        <label asp-for="FilmAdi"></label>
+        <input asp-for="FilmAdi" class="form-control" />
+        <span asp-validation-for="FilmAdi" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Yönetmen"></label>
+        <input asp-for="Yönetmen" class="form-control" />
+        <span asp-validation-for="Yönetmen" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FilmResimUrl"></label>
+        <input asp-for="FilmResimUrl" class="form-control" />
+        <span asp-validation-for="FilmResimUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Yil"></label>
+        <input asp-for="Yil" class="form-control" />
+        <span asp-validation-for="Yil" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TurID"></label>
+        <input asp-for="TurID" class="form-control" />
+        <span asp-validation-for="TurID" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

@@ -1,4 +1,4 @@
-@model IEnumerable<BingolSinema.Models.Film>
+@model AdminIndexViewModel
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,38 +9,142 @@
     body {
         background: url('/images/AdminIndex.jpg') no-repeat center center fixed;
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
         color: #fff;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px auto;
+        max-width: 1200px;
+    }
+    h2 {
+        color: #fff;
+        border-bottom: 2px solid #fff;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        color: #fff;
+    }
+    .table th {
+        background-color: #333;
+    }
+    .table tr:nth-child(even) {
+        background-color: #444;
+    }
+    .btn {
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: white;
+    }
+    .btn-delete {
+        background-color: red;
+    }
+    .btn-update {
+        background-color: blue;
+    }
+    .btn-users {
+        background-color: green;
     }
 </style>
 
-<h2>Yönetici Paneli</h2>
-
-<a href="@Url.Action("FilmEkle", "Admin")" class="btn btn-success">Film Ekle</a>
-<a href="@Url.Action("SeansEkle", "Admin")" class="btn btn-primary">Seans Ekle</a>
-<a href="@Url.Action("SalonEkle", "Admin")" class="btn btn-warning">Salon Ekle</a>
-<a href="@Url.Action("AdminOl", "Admin")" class="btn btn-warning">Admin Ekle</a>
-<a href="@Url.Action("Raporlar", "Admin")" class="btn btn-primary">Raporlar</a>
-<a href="@Url.Action("TurEkle", "Admin")" class="btn btn-warning">Film Türü Ekle</a>
-
-<h3>Mevcut Filmler</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Film Adı</th>
-            <th>Yönetmen</th>
-            <th>Yıl</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var film in Model)
-        {
+<div class="container">
+    <h2>Movies</h2>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@film.FilmAdi</td>
-                <td>@film.Yönetmen</td>
-                <td>@film.Yil</td>
+                <th>Movie Name</th>
+                <th>Director</th>
+                <th>Year</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var film in Model.Films)
+            {
+                <tr>
+                    <td>@film.FilmAdi</td>
+                    <td>@film.Yönetmen</td>
+                    <td>@film.Yil</td>
+                    <td>
+                        <form method="post" asp-action="DeleteFilm" asp-route-id="@film.FilmID" style="display:inline;">
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                        <a href="@Url.Action("UpdateFilm", "Admin", new { id = film.FilmID })" class="btn btn-update">Update</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Halls</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hall Name</th>
+                <th>Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var salon in Model.Salons)
+            {
+                <tr>
+                    <td>@salon.SalonAdi</td>
+                    <td>@salon.Kapasite</td>
+                    <td>
+                        <form method="post" asp-action="DeleteSalon" asp-route-id="@salon.SalonID" style="display:inline;">
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                        <a href="@Url.Action("UpdateSalon", "Admin", new { id = salon.SalonID })" class="btn btn-update">Update</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Sessions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>Hall</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var seans in Model.Seanslar)
+            {
+                <tr>
+                    <td>@seans.Film.FilmAdi</td>
+                    <td>@seans.Salon.SalonAdi</td>
+                    <td>@seans.BaslangicZamani</td>
+                    <td>@seans.BitisZamani</td>
+                    <td>@seans.SeansFiyat</td>
+                    <td>
+                        <form method="post" asp-action="DeleteSeans" asp-route-id="@seans.SeansID" style="display:inline;">
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                        <a href="@Url.Action("UpdateSeans", "Admin", new { id = seans.SeansID })" class="btn btn-update">Update</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("ListUsers", "Admin")" class="btn btn-users">List Users</a>
+</div>
